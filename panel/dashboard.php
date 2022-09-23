@@ -107,8 +107,8 @@ ob_start();
                             </a>
                         </li>
                         <ul class="sub-sec2">
-                            <li><a href="#">بخش شرح حال بیمار</a></li>
-                            <li><a href="#">بخش دستور دکتر</a></li>
+                            <li><a href="dashboard.php?page=create-question">ایجاد پرسش نامه</a></li>
+                            <li><a href="dashboard.php?page=patients-desc">بخش شرح حال بیمار</a></li>
                             <li><a href="#">بخش صدور گواهی تولد</a></li>
                         </ul>
 
@@ -192,7 +192,15 @@ ob_start();
                             case 'edit-patients':
                                 include_once 'user/edit_patients.php';
                             break;
-
+                            case 'patients-desc':
+                                include_once 'patient/patients_description.php';
+                            break;
+                            case 'pat-question':
+                                include_once 'patient/pat_questions.php';
+                            break;
+                            case 'create-question':
+                                include_once 'patient/create_question.php';
+                            break;
 
 
                         }

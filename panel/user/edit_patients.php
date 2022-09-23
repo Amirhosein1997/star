@@ -25,17 +25,27 @@ background-color: #0f6674;">
     <h5>افزودن بیمار</h5>
     <form method="post" enctype="multipart/form-data">
         <div class="row">
-            <div class="mb-3 mt-3 col-md-4">
+            <div class="mb-3 mt-3 col-md-3">
                 <label  class="form-label">نام کامل</label>
                 <input value="<?php echo $patient_record->full_name; ?>" name="info[name]" type="text" class="form-control" >
             </div>
-            <div class="mb-3 mt-3 col-md-4">
+            <div class="mb-3 mt-3 col-md-3">
                 <label  class="form-label">شماره ملی</label>
                 <input value="<?php echo $patient_record->meli_code; ?>" name="info[meli]" type="number" class="form-control" >
             </div>
-            <div class="mb-3 mt-3 col-md-4">
+            <div class="mb-3 mt-3 col-md-3">
                 <label  class="form-label">سن</label>
                 <input value="<?php echo $patient_record->age; ?>" name="info[age]" type="number" class="form-control" >
+            </div>
+            <div class="mb-3 mt-3 col-md-3">
+                <label  class="form-label">بخش ارجاع</label>
+                <select name="info[section]" class="form-select">
+                    <option <?php if ($patient_record->section=="زنان"){echo 'selected';} ?> value="زنان">__زنان</option>
+                    <option <?php if ($patient_record->section=="جراحی مردان"){echo 'selected';} ?> value="جراحی مردان">__جراحی مردان</option>
+                    <option <?php if ($patient_record->section=="اورژانس"){echo 'selected';} ?> value="اورژانس">__اورژانس</option>
+                    <option <?php if ($patient_record->section=="اتاق عمل"){echo 'selected';} ?> value="اتاق عمل">__اتاق عمل</option>
+                    <option <?php if ($patient_record->section=="زایشگاه"){echo 'selected';} ?> value="زایشگاه">__زایشگاه</option>
+                </select>
             </div>
         </div>
         <div class="row">

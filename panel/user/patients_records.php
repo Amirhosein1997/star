@@ -30,11 +30,11 @@ background-color: #0f6674;">
         </div>
         </div>
         <div class="row">
-            <div class="mb-3 mt-3 col-md-4">
+            <div class="mb-3 mt-3 col-md-3">
                 <label for="comment">علت مراجعه</label>
                 <textarea name="info[reason]" class="form-control" rows="5" id="comment" name="text"></textarea>
             </div>
-            <div class="mb-3 mt-3 col-md-4">
+            <div class="mb-3 mt-3 col-md-3">
                 <label  class="form-label">وضعیت بیمار</label>
                 <select name="info[status]" class="form-select">
                     <option value="نیاز به بستری">__نیاز به بستری</option>
@@ -42,11 +42,21 @@ background-color: #0f6674;">
                     <option value="ترخیص">__ترخیص</option>
                 </select>
             </div>
-            <div class="mb-3 mt-3 col-md-4">
+            <div class="mb-3 mt-3 col-md-3">
                 <label  class="form-label">جنسیت</label>
                 <select name="info[gender]" class="form-select">
                     <option value="مرد">__مرد</option>
                     <option value="زن">__زن</option>
+                </select>
+            </div>
+            <div class="mb-3 mt-3 col-md-3">
+                <label  class="form-label">بخش ارجاع</label>
+                <select name="info[section]" class="form-select">
+                    <option value="زنان">__زنان</option>
+                    <option value="جراحی مردان">__جراحی مردان</option>
+                    <option value="اورژانس">__اورژانس</option>
+                    <option value="اتاق عمل">__اتاق عمل</option>
+                    <option value="زایشگاه">__زایشگاه</option>
                 </select>
             </div>
         </div>
@@ -71,6 +81,7 @@ background-color: #0f6674;">
                 <th>تاریخ ورود</th>
                 <th>تاریخ خروج</th>
                 <th>مشکل</th>
+                <th>بخش</th>
                 <th>وضعیت</th>
                 <th>ویرایش</th>
             </tr>
@@ -85,6 +96,7 @@ background-color: #0f6674;">
                 <td><?php echo $patient_record->entering_date; ?></td>
                 <td><?php echo $patient_record->exiting_date; ?></td>
                 <td><?php echo $patient_record->problem; ?></td>
+                <td><?php echo $patient_record->section; ?></td>
                 <td><?php echo $patient_record->status; ?></td>
                 <td> <a href="dashboard.php?page=edit-patients&id=<?php echo $patient_record->id; ?>" class="btn btn-success">ویرایش</a></td>
             </tr>

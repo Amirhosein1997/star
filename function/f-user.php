@@ -48,12 +48,13 @@ function insert_patient($info){
     $name=$info['name'];
     $meli=$info['meli'];
     $age=$info['age'];
+    $section=$info['section'];
     $gender=$info['gender'];
     $date=date("Y/m/d");
     $problem=$info['reason'];
     $status=$info['status'];
     $pdo=data_base();
-    $query=$pdo->prepare("insert into patient_tbl(full_name, meli_code, age, gender, entering_date, exiting_date, problem, status) VALUES('$name','$meli','$age','$gender','$date','null','$problem','$status') ");
+    $query=$pdo->prepare("insert into patient_tbl(full_name, meli_code, age, gender,section, entering_date, exiting_date, problem, status) VALUES('$name','$meli','$age','$gender','$section','$date','null','$problem','$status') ");
     $query->execute();
 
 }
@@ -81,11 +82,12 @@ function update_pati_record($id,$info){
     $meli=$info['meli'];
     $age=$info['age'];
     $gender=$info['gender'];
+    $section=$info['section'];
     $exit_date=$info['exit_date'];
     $problem=$info['reason'];
     $status=$info['status'];
     $pdo=data_base();
-    $query=$pdo->prepare("update patient_tbl set full_name='$name',meli_code='$meli',age='$age',gender='$gender',exiting_date='$exit_date',problem='$problem',status='$status' where id='$id'");
+    $query=$pdo->prepare("update patient_tbl set full_name='$name',meli_code='$meli',age='$age',gender='$gender',section='$section',exiting_date='$exit_date',problem='$problem',status='$status' where id='$id'");
     $query->execute();
 
 }

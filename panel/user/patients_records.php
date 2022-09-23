@@ -1,10 +1,12 @@
 <?php
 include_once '../function/f-user.php';
+if (isset($_POST['send'])){
+    $info=$_POST['info'];
+    insert_patient($info);
+    header("location:dashboard.php?page=patients-records");
+}
+    $patient_records=get_patients_records();
 ?>
-
-
-
-
 <div style="border: 1px solid;
   padding: 10px;
   box-shadow: 5px 5px blue, 10px 10px red, 15px 15px green;
@@ -16,40 +18,39 @@ background-color: #0f6674;">
         <div class="row">
         <div class="mb-3 mt-3 col-md-4">
             <label  class="form-label">نام کامل</label>
-            <input type="text" class="form-control" >
+            <input name="info[name]" type="text" class="form-control" >
         </div>
         <div class="mb-3 mt-3 col-md-4">
             <label  class="form-label">شماره ملی</label>
-            <input type="number" class="form-control" >
+            <input name="info[meli]" type="number" class="form-control" >
         </div>
         <div class="mb-3 mt-3 col-md-4">
             <label  class="form-label">سن</label>
-            <input type="number" class="form-control" >
+            <input name="info[age]" type="number" class="form-control" >
         </div>
         </div>
         <div class="row">
             <div class="mb-3 mt-3 col-md-4">
                 <label for="comment">علت مراجعه</label>
-                <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+                <textarea name="info[reason]" class="form-control" rows="5" id="comment" name="text"></textarea>
             </div>
             <div class="mb-3 mt-3 col-md-4">
                 <label  class="form-label">وضعیت بیمار</label>
-                <select class="form-select">
-                    <option>__نیاز به بستری</option>
-                    <option>__در وضعیت بستری</option>
-                    <option>__ترخیص</option>
+                <select name="info[status]" class="form-select">
+                    <option value="نیاز به بستری">__نیاز به بستری</option>
+                    <option value="در وضعیت بستری">__در وضعیت بستری</option>
+                    <option value="ترخیص">__ترخیص</option>
                 </select>
             </div>
             <div class="mb-3 mt-3 col-md-4">
                 <label  class="form-label">جنسیت</label>
-                <select class="form-select">
-                    <option>__مرد</option>
-                    <option>__زن</option>
-
+                <select name="info[gender]" class="form-select">
+                    <option value="مرد">__مرد</option>
+                    <option value="زن">__زن</option>
                 </select>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">ثبت</button>
+        <button name="send" type="submit" class="btn btn-primary">ثبت</button>
     </form>
 </div>
 <br>
@@ -75,18 +76,19 @@ background-color: #0f6674;">
             </tr>
             </thead>
             <tbody>
+            <?php foreach ($patient_records as $patient_record):?>
             <tr>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
+                <td><?php echo $patient_record->full_name; ?></td>
+                <td><?php echo $patient_record->meli_code; ?></td>
+                <td><?php echo $patient_record->age; ?></td>
+                <td><?php echo $patient_record->gender; ?></td>
+                <td><?php echo $patient_record->entering_date; ?></td>
+                <td><?php echo $patient_record->exiting_date; ?></td>
+                <td><?php echo $patient_record->problem; ?></td>
+                <td><?php echo $patient_record->status; ?></td>
+                <td> <a href="dashboard.php?page=edit-patients&id=<?php echo $patient_record->id; ?>" class="btn btn-success">ویرایش</a></td>
             </tr>
-
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>

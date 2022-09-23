@@ -68,5 +68,6 @@ background-color: #0f6674;">
             </div>
         </div>
         <button name="update" type="submit" class="btn btn-primary">ویرایش</button>
+        <a href="dashboard.php?page=employes-records" class="btn btn-success">بازگشت</a>
     </form>
 </div>

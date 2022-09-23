@@ -189,6 +189,9 @@ ob_start();
                             case 'edit-employe':
                                 include_once 'user/edit_employes.php';
                             break;
+                            case 'edit-patients':
+                                include_once 'user/edit_patients.php';
+                            break;
 
 
 

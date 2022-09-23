@@ -44,3 +44,48 @@ function update_emp_record($id,$info){
     $query->execute();
 
 }
+function insert_patient($info){
+    $name=$info['name'];
+    $meli=$info['meli'];
+    $age=$info['age'];
+    $gender=$info['gender'];
+    $date=date("Y/m/d");
+    $problem=$info['reason'];
+    $status=$info['status'];
+    $pdo=data_base();
+    $query=$pdo->prepare("insert into patient_tbl(full_name, meli_code, age, gender, entering_date, exiting_date, problem, status) VALUES('$name','$meli','$age','$gender','$date','null','$problem','$status') ");
+    $query->execute();
+
+}
+
+function get_patients_records(){
+    $pdo=data_base();
+    $query=$pdo->prepare("select * from patient_tbl order by id desc ");
+    $query->execute();
+    $res=$query->fetchAll(PDO::FETCH_OBJ);
+    return $res;
+
+
+}
+
+function get_pati_record($id){
+    $pdo=data_base();
+    $query=$pdo->prepare("select * from patient_tbl where id='$id'");
+    $query->execute();
+    $res=$query->fetch(PDO::FETCH_OBJ);
+    return $res;
+}
+
+function update_pati_record($id,$info){
+    $name=$info['name'];
+    $meli=$info['meli'];
+    $age=$info['age'];
+    $gender=$info['gender'];
+    $exit_date=$info['exit_date'];
+    $problem=$info['reason'];
+    $status=$info['status'];
+    $pdo=data_base();
+    $query=$pdo->prepare("update patient_tbl set full_name='$name',meli_code='$meli',age='$age',gender='$gender',exiting_date='$exit_date',problem='$problem',status='$status' where id='$id'");
+    $query->execute();
+
+}

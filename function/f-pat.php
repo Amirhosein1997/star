@@ -26,3 +26,13 @@ function pat_question($sec){
     $res=$query->fetchAll(PDO::FETCH_OBJ);
     return $res;
 }
+
+function insert_pat_desc($order,$select,$description,$id){
+    $imploded_select=implode(",",$select);
+    $imploded_desc=implode(",",$description);
+    $pdo=data_base();
+    $query=$pdo->prepare("update patient_tbl set answers='$imploded_select',description='$imploded_desc',doctor_order='$order' where id='$id' ");
+    $query->execute();
+
+
+}

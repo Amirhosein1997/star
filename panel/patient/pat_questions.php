@@ -5,7 +5,17 @@ $id=$_GET['id'];
 $pat_record=get_pati_record($id);
 $pat_question=pat_question($pat_record->section);
 if (isset($_POST['send'])){
-
+$order=$_POST['order'];
+$select=$_POST['select'];
+$description=$_POST['desc'];
+insert_pat_desc($order,$select,$description,$id);
+header("location:dashboard.php?page=pat-question&id={$id}");
+}
+if ($pat_record->answers){
+$exploded_answers=explode(",",$pat_record->answers);
+}
+if ($pat_record->description){
+    $exploded_desc=explode(",",$pat_record->description);
 }
 ?>
 
@@ -37,12 +47,23 @@ if (isset($_POST['send'])){
             <td><?php echo $val->question; ?></td>
             <td><?php echo $val->section; ?></td>
             <td>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="mySwitch" name="select[]" value="yes" checked>
+                <div class="form-check">
+                    <input <?php if ($pat_record->answers){if ($exploded_answers[$key]=='yes'){echo ' checked';}} ?> type="radio" class="form-check-input" id="radio1" name="select[<?php echo $key; ?>]" value="yes">
+                    <label class="form-check-label" for="radio1">بله</label>
+                </div>
+                <div class="form-check">
+                    <input <?php if ($pat_record->answers){if ($exploded_answers[$key]=='no'){echo ' checked';}} ?> type="radio" class="form-check-input" id="radio2" name="select[<?php echo $key; ?>]" value="no">
+                    <label class="form-check-label" for="radio2">خیر</label>
                 </div>
             </td>
             <td>
-                <textarea class="form-control" rows="2" id="comment" name="desc[]"></textarea>
+                <textarea class="form-control" rows="2" id="comment" name="desc[]">
+                    <?php
+                    if ($pat_record->description){
+                        echo $exploded_desc[$key];
+                    }
+                    ?>
+                </textarea>
             </td>
         </tr>
         <?php endforeach;?>
@@ -50,9 +71,15 @@ if (isset($_POST['send'])){
     </table>
         <div class="mb-3 mt-3 col-md-4">
         <label for="comment">دستور دکتر:</label>
-        <textarea class="form-control" rows="5" id="comment" name="order"></textarea>
+        <textarea class="form-control" rows="5" id="comment" name="order">
+            <?php
+            if ($pat_record->doctor_order){
+                echo $pat_record->doctor_order;
+            }
+            ?>
+        </textarea>
         </div>
-        <button name="send" type="button" class="btn btn-success">ثبت</button>
+        <button name="send" type="submit" class="btn btn-success">ثبت</button>
     </form>
 </div>
 

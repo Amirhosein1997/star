@@ -11,10 +11,12 @@ $description=$_POST['desc'];
 insert_pat_desc($order,$select,$description,$id);
 header("location:dashboard.php?page=pat-question&id={$id}");
 }
-if ($pat_record->answers){
+
+if ($pat_record->answers !==" "){
 $exploded_answers=explode(",",$pat_record->answers);
+$answers_counts=count($exploded_answers);
 }
-if ($pat_record->description){
+if ($pat_record->description !==" "){
     $exploded_desc=explode(",",$pat_record->description);
 }
 ?>
@@ -48,18 +50,18 @@ if ($pat_record->description){
             <td><?php echo $val->section; ?></td>
             <td>
                 <div class="form-check">
-                    <input <?php if ($pat_record->answers){if ($exploded_answers[$key]=='yes'){echo ' checked';}} ?> type="radio" class="form-check-input" id="radio1" name="select[<?php echo $key; ?>]" value="yes">
+                    <input <?php if ($answers_counts > $key){if ($exploded_answers[$key]=='yes'){echo ' checked';}} ?> type="radio" class="form-check-input" id="radio1" name="select[<?php echo $key; ?>]" value="yes">
                     <label class="form-check-label" for="radio1">بله</label>
                 </div>
                 <div class="form-check">
-                    <input <?php if ($pat_record->answers){if ($exploded_answers[$key]=='no'){echo ' checked';}} ?> type="radio" class="form-check-input" id="radio2" name="select[<?php echo $key; ?>]" value="no">
+                    <input <?php if ($answers_counts > $key){if ($exploded_answers[$key]=='no'){echo ' checked';}} ?> type="radio" class="form-check-input" id="radio2" name="select[<?php echo $key; ?>]" value="no">
                     <label class="form-check-label" for="radio2">خیر</label>
                 </div>
             </td>
             <td>
                 <textarea class="form-control" rows="2" id="comment" name="desc[]">
                     <?php
-                    if ($pat_record->description){
+                    if ($answers_counts > $key){
                         echo $exploded_desc[$key];
                     }
                     ?>

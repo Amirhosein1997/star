@@ -36,3 +36,22 @@ function insert_pat_desc($order,$select,$description,$id){
 
 
 }
+
+function insert_birth($info){
+    $name=$info['name'];
+    $hospital=$info['hospital'];
+    $nurse=$info['nurse'];
+    $time=$info['time'];
+    $date=$info['date'];
+    $gender=$info['gender'];
+    $pdo=data_base();
+    $query=$pdo->prepare("insert into birth_tbl (name, hospital, nurse, time, date, gender) VALUES ('$name','$hospital','$nurse','$time','$date','$gender')");
+    $query->execute();
+}
+function birth_records(){
+    $pdo=data_base();
+    $query=$pdo->prepare("select * from birth_tbl order by id desc ");
+    $query->execute();
+    $res=$query->fetchAll(PDO::FETCH_OBJ);
+    return $res;
+}

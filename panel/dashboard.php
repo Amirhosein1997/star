@@ -38,7 +38,13 @@ ob_start();
                     <ul>
                         <div class="userwel">
                             <img src="../img/uuser.png">
-                            <p>WELCOME</p>
+                            <p>
+                                WELCOME
+                                <br>
+                                to
+                                <br>
+                                سامانه مدیریتی ستاره
+                            </p>
                         </div>
 
                         <li class="dash">
@@ -109,7 +115,7 @@ ob_start();
                         <ul class="sub-sec2">
                             <li><a href="dashboard.php?page=create-question">ایجاد پرسش نامه</a></li>
                             <li><a href="dashboard.php?page=patients-desc">بخش شرح حال بیمار</a></li>
-                            <li><a href="#">بخش صدور گواهی تولد</a></li>
+                            <li><a href="dashboard.php?page=child-birth">بخش صدور گواهی تولد</a></li>
                         </ul>
 
                         <li class="sec3">
@@ -135,7 +141,7 @@ ob_start();
                             </a>
                         </li>
                         <ul class="sub-sec3">
-                            <li><a href="#">بخش دارو</a></li>
+                            <li><a href="dashboard.php?page=create-med">بخش دارو</a></li>
 
                         </ul>
 
@@ -162,7 +168,7 @@ ob_start();
                             </a>
                         </li>
                         <ul class="sub-sec4">
-                            <li><a href="#">بخش پرداخت</a></li>
+                            <li><a href="dashboard.php?page=payment-setting">پرداخت دستی</a></li>
 
                         </ul>
 
@@ -201,8 +207,15 @@ ob_start();
                             case 'create-question':
                                 include_once 'patient/create_question.php';
                             break;
-
-
+                            case 'child-birth':
+                                include_once 'patient/child_birth.php';
+                            break;
+                            case 'create-med':
+                                include_once 'medicine/create_med.php';
+                            break;
+                            case 'payment-setting':
+                                include_once 'payment/payment_setting.php';
+                            break;
                         }
                     }
                     ?>

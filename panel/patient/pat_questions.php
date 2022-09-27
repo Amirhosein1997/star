@@ -23,13 +23,15 @@ if ($pat_record->description !==" "){
 
 
 
-<div style="border: 1px solid;
+<div id="toprint" style="border: 1px solid;
   padding: 10px;
   box-shadow: 5px 5px 8px blue, 10px 10px 8px red, 15px 15px 8px green;
   margin: 20px;">
 
+    <!-- (A2) PRINT BUTTON -->
 
     <h5>شرح حال بیمار</h5>
+    <input style="float: left;" class="btn btn-success" type="button" value="پرینت" onclick="printpart()"/>
     <hr>
     <form method="post" enctype="multipart/form-data">
     <table class="table table-dark table-hover">

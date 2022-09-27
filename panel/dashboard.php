@@ -216,6 +216,12 @@ ob_start();
                             case 'payment-setting':
                                 include_once 'payment/payment_setting.php';
                             break;
+                            case 'pay-callback-page':
+                                include_once 'payment/pay_callback_page.php';
+                            break;
+                            case 'payment-details':
+                                include_once 'payment/payment_details.php';
+                            break;
                         }
                     }
                     ?>
@@ -231,5 +237,16 @@ ob_start();
 <script src="../js/jquery-1.11.3.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/main.js"></script>
+
+<!-- (B) THE JAVASCRIPT -->
+<script>
+    function printpart () {
+        var printwin = window.open("");
+        printwin.document.write(document.getElementById("toprint").innerHTML);
+        printwin.stop();
+        printwin.print();
+        printwin.close();
+    }
+</script>
 </body>
 </html>
